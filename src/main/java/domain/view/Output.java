@@ -3,6 +3,7 @@ package domain.view;
 import domain.user.Player;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Output {
 
@@ -14,5 +15,13 @@ public class Output {
         for (Player player : players) {
             System.out.println(player.getName() + "의 배팅 금액은?");
         }
+    }
+    
+    public static void showGameProgressing(List<Player> players) {
+        String names = String.join(", ", players.stream()
+                .collect(Collectors.groupingBy(Player::getName))
+                .keySet());
+
+        System.out.println("딜러와 " + names + "에게 2장의 카드를 분배 했습니다.");
     }
 }

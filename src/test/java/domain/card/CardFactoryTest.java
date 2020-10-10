@@ -27,4 +27,15 @@ public class CardFactoryTest {
 
         Output.showHowMuchBetting(players);
     }
+
+    @Test
+    void gameProgressingTest() {
+        List<Player> players = new ArrayList<>();
+
+        players.add(new Player("첫 번째", 1000));
+        players.add(new Player("두 번째", 4000));
+        players.add(new Player("세 번째", 7000));
+
+        Output.showGameProgressing(players);
+    }
 }
