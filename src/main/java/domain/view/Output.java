@@ -8,8 +8,9 @@ import java.util.stream.Collectors;
 
 public class Output {
 
-    public static void showWhoJoinGame() {
-        System.out.println("게임에 참여할 사람의 이름을 입력하세요. (쉼표 기준으로 분리");
+    public static String[] showWhoJoinGame() {
+        System.out.println("게임에 참여할 사람의 이름을 입력하세요. (쉼표 기준으로 분리)");
+        return Input.inputJoinPlayerName();
     }
 
     public static void showHowMuchBetting(List<Player> players) {
