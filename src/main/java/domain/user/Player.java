@@ -4,6 +4,8 @@ import domain.card.Card;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * 게임 참여자를 의미하는 객체
@@ -26,5 +28,9 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+
+    public List<Card> getCards() {
+        return cards;
     }
 }

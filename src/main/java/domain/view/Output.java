@@ -1,5 +1,6 @@
 package domain.view;
 
+import domain.user.Dealer;
 import domain.user.Player;
 
 import java.util.List;
@@ -23,5 +24,13 @@ public class Output {
                 .keySet());
 
         System.out.println("딜러와 " + names + "에게 2장의 카드를 분배 했습니다.");
+    }
+
+    public static void showCardStateDealer(Dealer dealer) {
+        System.out.println("딜러: " + dealer.getCards());
+    }
+
+    public static void showCardStatePlayer(List<Player> players) {
+        players.forEach(player -> System.out.println(player.getName() + "카드: " + player.getCards()));
     }
 }
