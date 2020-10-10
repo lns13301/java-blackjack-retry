@@ -24,4 +24,7 @@ public class Player {
 
     // TODO 추가 기능 구현
 
+    public String getName() {
+        return name;
+    }
 }
