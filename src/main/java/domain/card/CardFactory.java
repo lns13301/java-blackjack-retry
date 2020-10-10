@@ -14,6 +14,9 @@ public class CardFactory {
         for (Symbol symbol : symbols) {
             createByType(cards, symbol);
         }
+
+        shuffle(cards);
+
         return Collections.unmodifiableList(cards);
     }
 
@@ -22,5 +25,9 @@ public class CardFactory {
         for (Type type : types) {
             cards.add(new Card(symbol, type));
         }
+    }
+
+    private static void shuffle(List<Card> cards) {
+        Collections.shuffle(cards);
     }
 }
