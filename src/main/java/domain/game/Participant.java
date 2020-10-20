@@ -3,6 +3,7 @@ package domain.game;
 import domain.card.Card;
 import domain.user.Dealer;
 import domain.user.Player;
+import view.Output;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,18 +19,29 @@ public class Participant {
         return players;
     }
 
-    public int pickCardFromDeck(List<Card> cards, Player player, int index) {
-        player.addCard(cards.get(index));
-        return ++index;
-    }
-
-    // 처음 2장씩 분배
     public int pickCardFromDeck(List<Card> cards, int index) {
         for (Player player : players) {
-            player.addCard(cards.get(index));
-            index++;
-            player.addCard(cards.get(index));
-            index++;
+            player.addCard(cards.get(index++));
+        }
+
+        return index;
+    }
+
+    public int pickOneMoreCard(List<Card> cards, int index) {
+        for (Player player : players) {
+            Output.showCardStatePlayer(player);
+            index = pickOneCard(cards, index, player);
+        }
+
+        return index;
+    }
+
+    private int pickOneCard(List<Card> cards, int index, Player player) {
+        if (Output.showGetOneMoreCard(player.getName())) {
+            player.addCard(cards.get(index++));
+            Output.showCardStatePlayer(player);
+
+            pickOneCard(cards, index, player);
         }
 
         return index;

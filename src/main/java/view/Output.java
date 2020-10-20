@@ -38,12 +38,17 @@ public class Output {
         System.out.println("딜러: " + dealer.getCards());
     }
 
-    public static void showCardStatePlayer(List<Player> players) {
+    public static void showCardStatePlayers(List<Player> players) {
         players.forEach(player -> System.out.println(player.getName() + "카드: " + player.getCards()));
     }
 
-    public static void showGetOneMoreCard(String name) {
-        System.out.println(name + "은 한 장의 카드를 더 받겠습니까? (y / n");
+    public static void showCardStatePlayer(Player player) {
+        System.out.println(player.getName() + "카드: " + player.getCards());
+    }
+
+    public static boolean showGetOneMoreCard(String name) {
+        System.out.println(name + "은 한 장의 카드를 더 받겠습니까? (y / n)");
+        return Input.inputYesOrNo();
     }
 
     public static void showHavingCard(Player player) {

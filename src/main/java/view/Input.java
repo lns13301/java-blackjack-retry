@@ -18,4 +18,10 @@ public class Input {
             throw new IllegalArgumentException("올바른 값이 입력되지 않았습니다.");
         }
     }
+
+    public static boolean inputYesOrNo() {
+        String choice = new Scanner(System.in).next();
+
+        return choice.equals("y") || choice.equals("Y");
+    }
 }
