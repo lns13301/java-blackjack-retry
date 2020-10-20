@@ -2,7 +2,7 @@ package domain.game;
 
 import domain.card.Card;
 import domain.card.CardFactory;
-import domain.view.Output;
+import view.Output;
 
 import java.util.List;
 
