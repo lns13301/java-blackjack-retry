@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Participant {
+    private static final int BURST_VALUE = 21;
+
     private List<Player> players;
 
     public Participant(List<Player> players) {
@@ -45,5 +47,18 @@ public class Participant {
         }
 
         return index;
+    }
+
+    private boolean checkBurst(Player player) {
+        List<Card> cards = player.getCards();
+        int lowAceValue = 0;
+        int highAceValue = 0;
+
+        for (Card card : cards) {
+            lowAceValue += card.getNumber();
+            highAceValue += card.getNumberAce();
+        }
+
+        return lowAceValue > BURST_VALUE && highAceValue > BURST_VALUE;
     }
 }
