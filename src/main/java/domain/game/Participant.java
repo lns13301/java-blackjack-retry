@@ -1,6 +1,7 @@
 package domain.game;
 
 import domain.card.Card;
+import domain.user.Dealer;
 import domain.user.Player;
 
 import java.util.ArrayList;
