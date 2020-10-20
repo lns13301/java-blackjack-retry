@@ -46,4 +46,9 @@ public class Output {
     public static void showDealerGetCard() {
         System.out.println("딜러는 16이하라 한 장의 카드를 더 받았습니다.");
     }
+
+    public static void showResult(Dealer dealer, List<Player> players) {
+        System.out.println("딜러 카드: " + dealer.getCards());
+        players.forEach(player -> System.out.println(player.getName() + "카드: " + player.getCards()));
+    }
 }
