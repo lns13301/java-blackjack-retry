@@ -9,8 +9,9 @@ import java.util.List;
 public class GameManager {
     private List<Card> deck = CardFactory.create();
     private int pickUpIndex = 0;
+    private Participant participant;
 
     public void startGame() {
-        Output.showWhoJoinGame();
+        String[] strings = Output.showWhoJoinGame();
     }
 }
