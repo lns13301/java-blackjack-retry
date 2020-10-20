@@ -19,13 +19,15 @@ public class CardFactoryTest {
 
     @Test
     void getNameTest() {
-        List<Player> players = new ArrayList<>();
+        String[] names = new String[3];
 
-        players.add(new Player("첫 번째", 1000));
-        players.add(new Player("두 번째", 4000));
-        players.add(new Player("세 번째", 7000));
+        names[0] = "첫 번째";
+        names[1] = "두 번째";
+        names[2] = "세 번째";
 
-        Output.showHowMuchBetting(players);
+        List<Player> players = Output.showHowMuchBetting(names);
+        assertThat(players.size()).isEqualTo(3);
+        assertThat(players.get(1).getName()).isEqualTo(("두 번째"));
     }
 
     @Test

@@ -9,4 +9,13 @@ public class Input {
 
         return players.split(",");
     }
+
+    public static int inputBetMoney() {
+        try {
+            return new Scanner(System.in).nextInt();
+        }
+        catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException("올바른 값이 입력되지 않았습니다.");
+        }
+    }
 }

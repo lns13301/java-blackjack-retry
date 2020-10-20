@@ -12,6 +12,7 @@ public class GameManager {
     private Participant participant;
 
     public void startGame() {
-        String[] strings = Output.showWhoJoinGame();
+        String[] names = Output.showWhoJoinGame();
+        participant = new Participant(Output.showHowMuchBetting(names));
     }
 }

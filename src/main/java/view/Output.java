@@ -3,6 +3,7 @@ package view;
 import domain.user.Dealer;
 import domain.user.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -13,10 +14,16 @@ public class Output {
         return Input.inputJoinPlayerName();
     }
 
-    public static void showHowMuchBetting(List<Player> players) {
-        for (Player player : players) {
-            System.out.println(player.getName() + "의 배팅 금액은?");
+    public static List<Player> showHowMuchBetting(String[] names) {
+        List<Player> players = new ArrayList<>();
+
+        for (String name : names) {
+            System.out.println(name + "의 배팅 금액은?");
+
+            players.add(new Player(name, Input.inputBetMoney()));
         }
+
+        return players;
     }
     
     public static void showGameProgressing(List<Player> players) {
