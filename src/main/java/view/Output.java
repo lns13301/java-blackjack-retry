@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Output {
+    private static final int BURST_VALUE = 21;
 
     public static String[] showWhoJoinGame() {
         System.out.println("게임에 참여할 사람의 이름을 입력하세요. (쉼표 기준으로 분리)");
@@ -66,5 +67,15 @@ public class Output {
 
     public static void showBurst(Player player) {
         System.out.println(player.getName() + "의 카드합이 21을 초과하였습니다...\n");
+    }
+    
+    public static void showGameResultDealer(Dealer dealer, int cardValue) {
+        System.out.print("딜러 카드: " + dealer.getCards() + " - 결과: " + cardValue);
+
+        if (cardValue > BURST_VALUE) {
+            System.out.print(" (버스트)");
+        }
+
+        System.out.println();
     }
 }

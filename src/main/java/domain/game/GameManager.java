@@ -23,6 +23,7 @@ public class GameManager {
         distributeCard();
         getOneMoreCard();
         pickOneCardDealer(deck, pickUpIndex, dealer);
+        getGameResult();
     }
 
     public void distributeCard() {
@@ -60,6 +61,10 @@ public class GameManager {
     }
 
     private boolean isBelowSixteen(List<Card> cards) {
+        return getDealerCardValue(cards) <= DEALER_LIMIT_VALUE;
+    }
+
+    public int getDealerCardValue(List<Card> cards) {
         int lowAceValue = 0;
         int highAceValue = 0;
 
@@ -68,6 +73,14 @@ public class GameManager {
             highAceValue += card.getNumberAce();
         }
 
-        return lowAceValue <= DEALER_LIMIT_VALUE && highAceValue <= DEALER_LIMIT_VALUE;
+        if (highAceValue <= BURST_VALUE && lowAceValue < highAceValue) {
+            return highAceValue;
+        }
+
+        return lowAceValue;
+    }
+
+    public void getGameResult() {
+        Output.showGameResultDealer(dealer, getDealerCardValue(dealer.getCards()));
     }
 }
