@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 
 public class Output {
     private static final int BURST_VALUE = 21;
+    private static final int BLACKJACK_CARD_COUNT = 2;
 
     public static String[] showWhoJoinGame() {
         System.out.println("게임에 참여할 사람의 이름을 입력하세요. (쉼표 기준으로 분리)");
@@ -85,6 +86,7 @@ public class Output {
                     + players.get(i).getCards() + " - 결과: " + cardValues.get(i));
 
             addBurstMessage(cardValues.get(i));
+            addBlackjackMessage(players.get(i), cardValues.get(i));
             System.out.println();
         }
     }
@@ -92,6 +94,12 @@ public class Output {
     private static void addBurstMessage(int cardValue) {
         if (cardValue > BURST_VALUE) {
             System.out.print(" (버스트)");
+        }
+    }
+    
+    private static void addBlackjackMessage(Player player, int cardValue) {
+        if (player.getCards().size() == BLACKJACK_CARD_COUNT && cardValue == 21) {
+            System.out.print(" (블랙잭)");
         }
     }
 
