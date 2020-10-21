@@ -28,9 +28,11 @@
 
 3. Output
     - 게임 관련 내용을 출력하는 기능
-    
-4. Validator
-    - 유효성을 검사하는 기능
 
-5. GameManager
+4. GameManager
     - 게임을 관리하는 기능
+        - 게임의 전체적인 흐름을 제어
+    
+5. Participant
+    - 게임 참가자를 관리하는 기능
+         - 일급 객체를 사용
