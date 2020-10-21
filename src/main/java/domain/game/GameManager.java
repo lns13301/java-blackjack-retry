@@ -23,6 +23,7 @@ public class GameManager {
         getOneMoreCard();
         pickOneCardDealer(deck, pickUpIndex, dealer);
         getGameResult();
+        getReword();
     }
 
     public void distributeCard() {
@@ -41,10 +42,6 @@ public class GameManager {
     public void getOneMoreCard() {
         Output.showGameStart();
         participant.pickOneMoreCard(deck, pickUpIndex);
-    }
-
-    public void getCardDealer() {
-
     }
 
     private int pickOneCardDealer(List<Card> cards, int index, Dealer dealer) {
@@ -82,5 +79,9 @@ public class GameManager {
     public void getGameResult() {
         Output.showGameResultDealer(dealer, getDealerCardValue(dealer.getCards()));
         Output.showGameResultPlayer(participant.getPlayers(), participant.getAllPlayerCardValue());
+    }
+
+    public void getReword() {
+        participant.getRewordInformation(getDealerCardValue(dealer.getCards()));
     }
 }

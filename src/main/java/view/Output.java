@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 public class Output {
     private static final int BURST_VALUE = 21;
     private static final int BLACKJACK_CARD_COUNT = 2;
+    private static final int DRAW_PRIZE = 0;
 
     public static String[] showWhoJoinGame() {
         System.out.println("게임에 참여할 사람의 이름을 입력하세요. (쉼표 기준으로 분리)");
@@ -104,5 +105,30 @@ public class Output {
 
     public static void showBlackjack(Player player) {
         System.out.println(player.getName() + "는 블랙잭 입니다!\n");
+    }
+
+    public static void showRewardPlayer(Player player, int cardValue, int dealerCardValue) {
+        beatMessage(player, cardValue, dealerCardValue);
+        drawMessage(player, cardValue, dealerCardValue);
+        defeatMessage(player, cardValue, dealerCardValue);
+    }
+
+    private static void beatMessage(Player player, int cardValue, int dealerCardValue) {
+        if ((cardValue > dealerCardValue && cardValue <= BURST_VALUE)
+                || (cardValue <= BURST_VALUE && dealerCardValue > BURST_VALUE)) {
+            System.out.println(player.getName() + ": " + player.getBettingMoney());
+        }
+    }
+
+    private static void drawMessage(Player player, int cardValue, int dealerCardValue) {
+        if (cardValue == dealerCardValue && cardValue <= BURST_VALUE) {
+            System.out.println(player.getName() + ": " + DRAW_PRIZE);
+        }
+    }
+
+    private static void defeatMessage(Player player, int cardValue, int dealerCardValue) {
+        if (cardValue > BURST_VALUE || (cardValue < dealerCardValue && dealerCardValue <= BURST_VALUE)) {
+            System.out.println(player.getName() + ": " + -player.getBettingMoney());
+        }
     }
 }

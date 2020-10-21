@@ -106,4 +106,10 @@ public class Participant {
 
         return NULL_VALUE;
     }
+
+    public void getRewordInformation(int dealerCardValue) {
+        for (Player player: players) {
+            Output.showRewardPlayer(player, getCardValue(player), dealerCardValue);
+        }
+    }
 }

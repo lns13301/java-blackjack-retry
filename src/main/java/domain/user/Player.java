@@ -24,4 +24,8 @@ public class Player extends Dealer{
     public String getName() {
         return name;
     }
+
+    public double getBettingMoney() {
+        return bettingMoney;
+    }
 }
