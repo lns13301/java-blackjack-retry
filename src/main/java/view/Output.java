@@ -94,4 +94,8 @@ public class Output {
             System.out.print(" (버스트)");
         }
     }
+
+    public static void showBlackjack(Player player) {
+        System.out.println(player.getName() + "는 블랙잭 입니다!\n");
+    }
 }

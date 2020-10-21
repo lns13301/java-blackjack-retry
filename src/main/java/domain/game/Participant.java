@@ -9,6 +9,8 @@ import java.util.List;
 
 public class Participant {
     private static final int BURST_VALUE = 21;
+    private static final int BLACKJACK_CARD_COUNT = 2;
+    private static final int NULL_VALUE = 0;
 
     private List<Player> players;
 
@@ -38,10 +40,10 @@ public class Participant {
     }
 
     private int pickOneCard(List<Card> cards, int index, Player player) {
-        if (checkBurst(player)) {
-            Output.showBurst(player);
+        int checkedValue = checkBlackjackAndBurst(player, index);
 
-            return index;
+        if (checkedValue != NULL_VALUE) {
+            return checkedValue;
         }
 
         if (Output.showGetOneMoreCard(player.getName())) {
@@ -83,5 +85,25 @@ public class Participant {
         }
 
         return values;
+    }
+
+    public boolean isBlackjack(Player player) {
+        return getCardValue(player) == BURST_VALUE && player.getCards().size() == BLACKJACK_CARD_COUNT;
+    }
+
+    private int checkBlackjackAndBurst(Player player, int index) {
+        if (isBlackjack(player)) {
+            Output.showBlackjack(player);
+
+            return index;
+        }
+
+        if (checkBurst(player)) {
+            Output.showBurst(player);
+
+            return index;
+        }
+
+        return NULL_VALUE;
     }
 }
