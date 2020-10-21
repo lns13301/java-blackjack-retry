@@ -1,5 +1,6 @@
 package view;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Input {
@@ -14,8 +15,8 @@ public class Input {
         try {
             return new Scanner(System.in).nextInt();
         }
-        catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("올바른 값이 입력되지 않았습니다.");
+        catch (InputMismatchException e) {
+            throw new InputMismatchException("숫자를 입력하세요.");
         }
     }
 
