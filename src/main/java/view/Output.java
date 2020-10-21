@@ -84,7 +84,7 @@ public class Output {
             System.out.println(players.get(i).getName() + " 카드: "
                     + players.get(i).getCards() + " - 결과: " + cardValues.get(i));
 
-            addBurstMessage(cardValues.get(0));
+            addBurstMessage(cardValues.get(i));
         }
 
         System.out.println();
