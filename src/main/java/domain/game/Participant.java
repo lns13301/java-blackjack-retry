@@ -1,7 +1,6 @@
 package domain.game;
 
 import domain.card.Card;
-import domain.user.Dealer;
 import domain.user.Player;
 import view.Output;
 
@@ -56,6 +55,10 @@ public class Participant {
     }
 
     private boolean checkBurst(Player player) {
+        return getCardValue(player) > BURST_VALUE;
+    }
+
+    private int getCardValue(Player player) {
         List<Card> cards = player.getCards();
         int lowAceValue = 0;
         int highAceValue = 0;
@@ -65,6 +68,20 @@ public class Participant {
             highAceValue += card.getNumberAce();
         }
 
-        return lowAceValue > BURST_VALUE && highAceValue > BURST_VALUE;
+        if (highAceValue <= BURST_VALUE && lowAceValue < highAceValue) {
+            return highAceValue;
+        }
+
+        return lowAceValue;
+    }
+
+    public List<Integer> getAllPlayerCardValue() {
+        List<Integer> values = new ArrayList<>();
+
+        for (Player player : players) {
+            values.add(getCardValue(player));
+        }
+
+        return values;
     }
 }

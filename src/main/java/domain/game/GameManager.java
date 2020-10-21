@@ -3,7 +3,6 @@ package domain.game;
 import domain.card.Card;
 import domain.card.CardFactory;
 import domain.user.Dealer;
-import domain.user.Player;
 import view.Output;
 
 import java.util.List;
@@ -82,5 +81,6 @@ public class GameManager {
 
     public void getGameResult() {
         Output.showGameResultDealer(dealer, getDealerCardValue(dealer.getCards()));
+        Output.showGameResultPlayer(participant.getPlayers(), participant.getAllPlayerCardValue());
     }
 }

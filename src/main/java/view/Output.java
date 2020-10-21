@@ -61,7 +61,7 @@ public class Output {
     }
 
     public static void showResult(Dealer dealer, List<Player> players) {
-        System.out.println("딜러 카드: " + dealer.getCards());
+        System.out.println("\n딜러 카드: " + dealer.getCards());
         players.forEach(player -> System.out.println(player.getName() + "카드: " + player.getCards()));
     }
 
@@ -77,5 +77,22 @@ public class Output {
         }
 
         System.out.println();
+    }
+
+    public static void showGameResultPlayer(List<Player> players, List<Integer> cardValues) {
+        for (int i = 0; i < players.size(); i++) {
+            System.out.println(players.get(i).getName() + " 카드: "
+                    + players.get(i).getCards() + " - 결과: " + cardValues.get(i));
+
+            addBurstMessage(cardValues.get(0));
+        }
+
+        System.out.println();
+    }
+
+    private static void addBurstMessage(int cardValue) {
+        if (cardValue > BURST_VALUE) {
+            System.out.print(" (버스트)");
+        }
     }
 }
