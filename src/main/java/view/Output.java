@@ -56,7 +56,7 @@ public class Output {
     }
 
     public static void showDealerGetCard() {
-        System.out.println("딜러는 16이하라 한 장의 카드를 더 받았습니다.");
+        System.out.println("\n딜러는 16이하라 한 장의 카드를 더 받았습니다.");
     }
 
     public static void showResult(Dealer dealer, List<Player> players) {
