@@ -100,7 +100,7 @@ public class Participant {
     }
 
     public boolean isBlackjack(Player player) {
-        return getCardValuePlayer(player) == BURST_VALUE && player.getCards().size() == BLACKJACK_CARD_COUNT;
+        return getCardValuePlayer(player) == BLACKJACK_VALUE;
     }
 
     private int checkBlackjackAndBurst(Player player, int index) {
