@@ -127,7 +127,8 @@ public class Output {
             return true;
         }
 
-        if ((cardValue > dealerCardValue && cardValue <= BURST_VALUE)) {
+        if ((cardValue > dealerCardValue && cardValue <= BURST_VALUE)
+                || (cardValue <= BURST_VALUE && dealerCardValue > BURST_VALUE)) {
             System.out.println(player.getName() + ": " + player.getBettingMoney());
             return true;
         }
