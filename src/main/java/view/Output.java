@@ -73,9 +73,8 @@ public class Output {
         showGameResult();
         System.out.print("딜러 카드: " + dealer.getCards() + " - 결과: " + cardValue);
 
-        if (cardValue > BURST_VALUE) {
-            System.out.print(" (버스트)");
-        }
+        addBurstMessage(cardValue);
+        addBlackjackMessage(dealer, cardValue);
 
         System.out.println();
     }
@@ -97,7 +96,7 @@ public class Output {
         }
     }
     
-    private static void addBlackjackMessage(Player player, int cardValue) {
+    private static void addBlackjackMessage(Dealer player, int cardValue) {
         if (player.getCards().size() == BLACKJACK_CARD_COUNT && cardValue == 21) {
             System.out.print(" (블랙잭)");
         }
