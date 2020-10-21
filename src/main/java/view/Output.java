@@ -81,13 +81,12 @@ public class Output {
 
     public static void showGameResultPlayer(List<Player> players, List<Integer> cardValues) {
         for (int i = 0; i < players.size(); i++) {
-            System.out.println(players.get(i).getName() + " 카드: "
+            System.out.print(players.get(i).getName() + " 카드: "
                     + players.get(i).getCards() + " - 결과: " + cardValues.get(i));
 
             addBurstMessage(cardValues.get(i));
+            System.out.println();
         }
-
-        System.out.println();
     }
 
     private static void addBurstMessage(int cardValue) {
