@@ -132,8 +132,9 @@ public class Output {
             return -player.getBettingMoney() * BLACKJACK_BONUS;
         }
 
-        if ((cardValue > dealerCardValue && cardValue <= BURST_VALUE)
-                || (cardValue <= BURST_VALUE && dealerCardValue > BURST_VALUE)) {
+        if (dealerCardValue != BLACKJACK_VALUE
+                && ((cardValue > dealerCardValue && cardValue <= BURST_VALUE)
+                || (cardValue <= BURST_VALUE && dealerCardValue > BURST_VALUE))) {
             System.out.println(player.getName() + ": " + player.getBettingMoney());
             return -player.getBettingMoney();
         }

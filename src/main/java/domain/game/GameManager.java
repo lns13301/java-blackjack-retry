@@ -3,6 +3,7 @@ package domain.game;
 import domain.card.Card;
 import domain.card.CardFactory;
 import domain.user.Dealer;
+import domain.user.Player;
 import view.Output;
 
 import java.util.List;
@@ -47,6 +48,10 @@ public class GameManager {
     }
 
     private int pickOneCardDealer(List<Card> cards, int index, Dealer dealer) {
+        if (isBlackjack(dealer)) {
+            return index;
+        }
+
         if (isBelowSixteen(dealer.getCards())) {
             Output.showDealerGetCard();
             dealer.addCard(cards.get(index++));
@@ -56,6 +61,10 @@ public class GameManager {
         }
 
         return index;
+    }
+
+    public boolean isBlackjack(Dealer dealer) {
+        return getDealerCardValue(dealer.getCards()) == BLACKJACK_VALUE;
     }
 
     private boolean isBelowSixteen(List<Card> cards) {
