@@ -11,6 +11,7 @@ public class Participant {
     private static final int BURST_VALUE = 21;
     private static final int BLACKJACK_CARD_COUNT = 2;
     private static final int NULL_VALUE = 0;
+    private static final int BLACKJACK_VALUE = -21;
 
     private List<Player> players;
 
@@ -57,11 +58,22 @@ public class Participant {
     }
 
     private boolean checkBurst(Player player) {
-        return getCardValue(player) > BURST_VALUE;
+        return getCardValuePlayer(player) > BURST_VALUE;
     }
 
-    private int getCardValue(Player player) {
+    private int getCardValuePlayer(Player player) {
         List<Card> cards = player.getCards();
+
+        int cardValue = getCardValue(cards);
+
+        if (cards.size() == BLACKJACK_CARD_COUNT && cardValue == BURST_VALUE) {
+            return BLACKJACK_VALUE;
+        }
+
+        return cardValue;
+    }
+
+    private int getCardValue(List<Card> cards) {
         int lowAceValue = 0;
         int highAceValue = 0;
 
@@ -81,14 +93,14 @@ public class Participant {
         List<Integer> values = new ArrayList<>();
 
         for (Player player : players) {
-            values.add(getCardValue(player));
+            values.add(getCardValuePlayer(player));
         }
 
         return values;
     }
 
     public boolean isBlackjack(Player player) {
-        return getCardValue(player) == BURST_VALUE && player.getCards().size() == BLACKJACK_CARD_COUNT;
+        return getCardValuePlayer(player) == BURST_VALUE && player.getCards().size() == BLACKJACK_CARD_COUNT;
     }
 
     private int checkBlackjackAndBurst(Player player, int index) {
@@ -109,7 +121,7 @@ public class Participant {
 
     public void getRewordInformation(int dealerCardValue) {
         for (Player player: players) {
-            Output.showRewardPlayer(player, getCardValue(player), dealerCardValue);
+            Output.showRewardPlayer(player, getCardValuePlayer(player), dealerCardValue);
         }
     }
 }

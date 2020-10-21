@@ -10,6 +10,8 @@ import java.util.List;
 public class GameManager {
     private static final int DEALER_LIMIT_VALUE = 16;
     private static final int BURST_VALUE = 21;
+    private static final int BLACKJACK_CARD_COUNT = 2;
+    private static final int BLACKJACK_VALUE = -21;
 
     private List<Card> deck = CardFactory.create();
     private int pickUpIndex = 0;
@@ -61,6 +63,16 @@ public class GameManager {
     }
 
     public int getDealerCardValue(List<Card> cards) {
+        int cardValue = getCardValue(cards);
+
+        if (cards.size() == BLACKJACK_CARD_COUNT && cardValue == BURST_VALUE) {
+            return BLACKJACK_VALUE;
+        }
+
+        return cardValue;
+    }
+
+    private int getCardValue(List<Card> cards) {
         int lowAceValue = 0;
         int highAceValue = 0;
 
