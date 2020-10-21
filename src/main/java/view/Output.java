@@ -63,4 +63,8 @@ public class Output {
         System.out.println("딜러 카드: " + dealer.getCards());
         players.forEach(player -> System.out.println(player.getName() + "카드: " + player.getCards()));
     }
+
+    public static void showBurst(Player player) {
+        System.out.println(player.getName() + "의 카드합이 21을 초과하였습니다...\n");
+    }
 }

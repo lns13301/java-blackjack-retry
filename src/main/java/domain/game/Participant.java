@@ -39,6 +39,12 @@ public class Participant {
     }
 
     private int pickOneCard(List<Card> cards, int index, Player player) {
+        if (checkBurst(player)) {
+            Output.showBurst(player);
+
+            return index;
+        }
+
         if (Output.showGetOneMoreCard(player.getName())) {
             player.addCard(cards.get(index++));
             Output.showCardStatePlayer(player);
