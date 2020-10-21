@@ -119,9 +119,13 @@ public class Participant {
         return NULL_VALUE;
     }
 
-    public void getRewordInformation(int dealerCardValue) {
+    public double getRewordInformation(int dealerCardValue) {
+        double dealerReword = 0;
+
         for (Player player: players) {
-            Output.showRewardPlayer(player, getCardValuePlayer(player), dealerCardValue);
+            dealerReword += Output.showRewardPlayer(player, getCardValuePlayer(player), dealerCardValue);
         }
+
+        return dealerReword;
     }
 }

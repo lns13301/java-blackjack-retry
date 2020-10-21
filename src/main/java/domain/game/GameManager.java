@@ -94,6 +94,7 @@ public class GameManager {
     }
 
     public void getReword() {
-        participant.getRewordInformation(getDealerCardValue(dealer.getCards()));
+        double rewordInformation = participant.getRewordInformation(getDealerCardValue(dealer.getCards()));
+        Output.showRewordDealer(rewordInformation);
     }
 }
