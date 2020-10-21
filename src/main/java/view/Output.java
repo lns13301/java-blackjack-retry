@@ -59,8 +59,17 @@ public class Output {
     public static void showBurst(Player player) {
         System.out.println(player.getName() + "의 카드합이 21을 초과하였습니다...\n");
     }
+
+    public static void showGameStart() {
+        System.out.println("\n ====================카드 분배 시작====================\n");
+    }
+
+    private static void showGameResult() {
+        System.out.println("\n ====================게임 결과====================\n");
+    }
     
     public static void showGameResultDealer(Dealer dealer, int cardValue) {
+        showGameResult();
         System.out.print("딜러 카드: " + dealer.getCards() + " - 결과: " + cardValue);
 
         if (cardValue > BURST_VALUE) {

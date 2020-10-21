@@ -39,7 +39,7 @@ public class GameManager {
     }
 
     public void getOneMoreCard() {
-        System.out.println("\n ====================카드 분배 시작====================\n");
+        Output.showGameStart();
         participant.pickOneMoreCard(deck, pickUpIndex);
     }
 
