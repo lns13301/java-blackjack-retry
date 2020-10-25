@@ -33,9 +33,22 @@ public class Card {
 
     @Override
     public String toString() {
-        return "Card{" +
+        return symbol.getSymbol() + type.getType();
+/*        return "Card{" +
                 "symbol=" + symbol +
                 ", type=" + type +
-                '}';
+                '}';*/
+    }
+
+    public int getNumber() {
+        return symbol.getScore();
+    }
+
+    public int getNumberAce() {
+        if (symbol.equals(Symbol.ACE)) {
+            return 11;
+        }
+
+        return symbol.getScore();
     }
 }
