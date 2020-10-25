@@ -98,7 +98,7 @@ public class Player extends Dealer{
             addCard(cards.get(index++));
             Output.showCardStatePlayer(this);
 
-            pickOneCard(cards, index);
+            index = pickOneCard(cards, index);
         }
 
         return index;

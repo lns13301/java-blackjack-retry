@@ -20,11 +20,13 @@ public class Participant {
     }
 
     public int pickCardFromDeck(List<Card> cards, int index) {
+        int cardIndex = index;
+
         for (Player player : players) {
-            player.addCard(cards.get(index++));
+            player.addCard(cards.get(cardIndex++));
         }
 
-        return index;
+        return cardIndex;
     }
 
     public int pickOneMoreCard(List<Card> cards, int index) {

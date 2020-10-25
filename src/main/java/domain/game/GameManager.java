@@ -23,7 +23,7 @@ public class GameManager {
         String[] names = Output.showWhoJoinGame();
         participant = new Participant(Output.showHowMuchBetting(names));
         distributeCard();
-        getOneMoreCard();
+        pickUpIndex = getOneMoreCard();
         pickOneCardDealer(deck, pickUpIndex, dealer);
         getGameResult();
         getReward();
@@ -42,9 +42,9 @@ public class GameManager {
         Output.showCardStatePlayers(participant.getPlayers());
     }
 
-    public void getOneMoreCard() {
+    public int getOneMoreCard() {
         Output.showGameStart();
-        participant.pickOneMoreCard(deck, pickUpIndex);
+        return participant.pickOneMoreCard(deck, pickUpIndex);
     }
 
     private int pickOneCardDealer(List<Card> cards, int index, Dealer dealer) {
