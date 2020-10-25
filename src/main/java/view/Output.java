@@ -10,9 +10,7 @@ import java.util.stream.Collectors;
 public class Output {
     private static final int BURST_VALUE = 21;
     private static final int BLACKJACK_CARD_COUNT = 2;
-    private static final int DRAW_PRIZE = 0;
     private static final int BLACKJACK_VALUE = -21;
-    private static final double BLACKJACK_BONUS = 1.5;
 
     public static String[] showWhoJoinGame() {
         System.out.println("게임에 참여할 사람의 이름을 입력하세요. (쉼표 기준으로 분리)");
@@ -68,110 +66,52 @@ public class Output {
         System.out.println("\n ====================카드 분배 시작====================\n");
     }
 
-    private static void showGameResult() {
+    public static void showGameResult() {
         System.out.println("\n ====================게임 결과====================\n");
     }
-    
-    public static void showGameResultDealer(Dealer dealer, int cardValue) {
-        showGameResult();
+
+    public static void showDealerResult(Dealer dealer, int cardValue) {
         System.out.print("딜러 카드: " + dealer.getCards() + " - 결과: " + cardValue);
-
-        addBurstMessage(cardValue);
-        addBlackjackMessage(dealer, cardValue);
-
-        System.out.println();
     }
 
-    public static void showGameResultPlayer(List<Player> players, List<Integer> cardValues) {
-        for (int i = 0; i < players.size(); i++) {
-            System.out.print(players.get(i).getName() + " 카드: "
-                    + players.get(i).getCards() + " - 결과: " + cardValues.get(i));
-
-            addBurstMessage(cardValues.get(i));
-            addBlackjackMessage(players.get(i), cardValues.get(i));
-            System.out.println();
-        }
+    public static void showPlayerResult(Player player, int cardValue) {
+        System.out.print(player.getName() + " 카드: " + player.getCards() + " - 결과: " + cardValue);
     }
 
-    private static void addBurstMessage(int cardValue) {
-        if (cardValue > BURST_VALUE) {
-            System.out.print(" (버스트)");
-        }
+    public static void showBurst() {
+        System.out.print(" (버스트)");
     }
-    
-    private static void addBlackjackMessage(Dealer player, int cardValue) {
-        if (player.getCards().size() == BLACKJACK_CARD_COUNT && cardValue == 21) {
-            System.out.print(" (블랙잭)");
-        }
+
+    public static void showBlackjack() {
+        System.out.print(" (블랙잭)");
     }
 
     public static void showBlackjack(Player player) {
         System.out.println(player.getName() + "는 블랙잭 입니다!\n");
     }
 
-    public static double showRewardPlayer(Player player, int cardValue, int dealerCardValue) {
-        double reword = beatMessage(player, cardValue, dealerCardValue);
-
-        if (reword != DRAW_PRIZE) {
-            return reword;
-        }
-
-        reword = defeatMessage(player, cardValue, dealerCardValue);
-
-        if (reword != DRAW_PRIZE) {
-            return reword;
-        }
-
-        reword = drawMessage(player, cardValue, dealerCardValue);
-        return reword;
+    public static void showPlayerBlackjackBeatMessage(Player player, double blackjackBonus) {
+        System.out.println(player.getName() + ": " + player.getBettingMoney() * blackjackBonus + " (블랙잭 승리)");
     }
 
-    private static double beatMessage(Player player, int cardValue, int dealerCardValue) {
-        if (cardValue == BLACKJACK_VALUE && dealerCardValue != BLACKJACK_VALUE) {
-            System.out.println(player.getName() + ": " + player.getBettingMoney() * BLACKJACK_BONUS + " (블랙잭 승리)");
-            return -player.getBettingMoney() * BLACKJACK_BONUS;
-        }
-
-        if (dealerCardValue != BLACKJACK_VALUE
-                && ((cardValue > dealerCardValue && cardValue <= BURST_VALUE)
-                || (cardValue <= BURST_VALUE && dealerCardValue > BURST_VALUE))) {
-            System.out.println(player.getName() + ": " + player.getBettingMoney());
-            return -player.getBettingMoney();
-        }
-
-        return DRAW_PRIZE;
+    public static void showPlayerBeatMessage(Player player) {
+        System.out.println(player.getName() + ": " + player.getBettingMoney());
     }
 
-    private static double drawMessage(Player player, int cardValue, int dealerCardValue) {
-        if (cardValue == BLACKJACK_VALUE && dealerCardValue == BLACKJACK_VALUE) {
-            System.out.println(player.getName() + ": " + DRAW_PRIZE);
-            return DRAW_PRIZE;
-        }
-
-        if (cardValue == dealerCardValue && cardValue <= BURST_VALUE) {
-            System.out.println(player.getName() + ": " + DRAW_PRIZE);
-            return DRAW_PRIZE;
-        }
-
-        return DRAW_PRIZE;
+    public static void showPlayerDrawMessage(Player player, int drawPrize) {
+        System.out.println(player.getName() + ": " + drawPrize);
     }
 
-    private static double defeatMessage(Player player, int cardValue, int dealerCardValue) {
-        if (cardValue != BLACKJACK_VALUE && dealerCardValue == BLACKJACK_VALUE) {
-            System.out.println(player.getName() + ": " + -player.getBettingMoney() + " (블랙잭 패배)");
-            return player.getBettingMoney();
-        }
-
-        if (cardValue > BURST_VALUE || (cardValue < dealerCardValue && dealerCardValue <= BURST_VALUE)) {
-            System.out.println(player.getName() + ": " + -player.getBettingMoney());
-            return player.getBettingMoney();
-        }
-
-        return DRAW_PRIZE;
+    public static void showPlayerBlackjackDefeatMessage(Player player) {
+        System.out.println(player.getName() + ": " + -player.getBettingMoney() + " (블랙잭 패배)");
     }
 
-    public static void showRewordDealer(double dealerReword) {
+    public static void showPlayerDefeatMessage(Player player) {
+        System.out.println(player.getName() + ": " + -player.getBettingMoney());
+    }
+
+    public static void showRewardDealer(double dealerReward) {
         System.out.println("\n## 최종수익");
-        System.out.println("딜러: " + dealerReword);
+        System.out.println("딜러: " + dealerReward);
     }
 }

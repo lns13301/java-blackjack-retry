@@ -46,13 +46,13 @@ public class Participant {
         return values;
     }
 
-    public double getRewordInformation(int dealerCardValue) {
-        double dealerReword = 0;
+    public double getRewardInformation(int dealerCardValue) {
+        double dealerReward = 0;
 
         for (Player player: players) {
-            dealerReword += Output.showRewardPlayer(player, player.getCardValuePlayer(), dealerCardValue);
+            dealerReward += RewordManager.showRewardPlayer(player, player.getCardValuePlayer(), dealerCardValue);
         }
 
-        return dealerReword;
+        return dealerReward;
     }
 }

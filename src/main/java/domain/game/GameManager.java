@@ -26,7 +26,7 @@ public class GameManager {
         getOneMoreCard();
         pickOneCardDealer(deck, pickUpIndex, dealer);
         getGameResult();
-        getReword();
+        getReward();
     }
 
     public void distributeCard() {
@@ -98,13 +98,45 @@ public class GameManager {
     }
 
     public void getGameResult() {
-        Output.showGameResultDealer(dealer, getDealerCardValue(dealer.getCards()));
-        Output.showGameResultPlayer(participant.getPlayers(), participant.getAllPlayerCardValue());
+        showGameResultDealer(dealer, getDealerCardValue(dealer.getCards()));
+        showGameResultPlayer(participant.getPlayers(), participant.getAllPlayerCardValue());
     }
 
-    public void getReword() {
-        double rewordInformation = participant.getRewordInformation(getDealerCardValue(dealer.getCards()));
-        Output.showRewordDealer(rewordInformation);
-        participant.getRewordInformation(getDealerCardValue(dealer.getCards()));
+    public void getReward() {
+        double rewardInformation = participant.getRewardInformation(getDealerCardValue(dealer.getCards()));
+        Output.showRewardDealer(rewardInformation);
+        participant.getRewardInformation(getDealerCardValue(dealer.getCards()));
+    }
+
+    public static void showGameResultDealer(Dealer dealer, int cardValue) {
+        Output.showGameResult();
+        Output.showDealerResult(dealer, cardValue);
+
+        addBurstMessage(cardValue);
+        addBlackjackMessage(dealer, cardValue);
+
+        System.out.println();
+    }
+
+    public static void showGameResultPlayer(List<Player> players, List<Integer> cardValues) {
+        for (int i = 0; i < players.size(); i++) {
+            Output.showPlayerResult(players.get(i), cardValues.get(i));
+
+            addBurstMessage(cardValues.get(i));
+            addBlackjackMessage(players.get(i), cardValues.get(i));
+            System.out.println();
+        }
+    }
+
+    private static void addBurstMessage(int cardValue) {
+        if (cardValue > BURST_VALUE) {
+            Output.showBurst();
+        }
+    }
+
+    private static void addBlackjackMessage(Dealer player, int cardValue) {
+        if (player.getCards().size() == BLACKJACK_CARD_COUNT && cardValue == 21) {
+            Output.showBlackjack();
+        }
     }
 }
